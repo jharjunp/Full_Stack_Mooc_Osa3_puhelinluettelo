@@ -60,6 +60,13 @@ const App = () => {
           .then(ServerNewPerson => {
             setPersons(persons.concat(ServerNewPerson))
           })
+          .catch(error => {
+            console.log('ErrorMessage: ', error.response.data)
+            setMessage({message: error.response.data.error, style: false})
+            setTimeout(() => {
+              setMessage({message: null, style: true})
+            }, 3000)
+          })
         console.log('persons: ', persons)
         setMessage({message: `Added ${newName}`, style: true})
         setTimeout(() => {
